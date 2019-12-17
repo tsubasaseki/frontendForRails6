@@ -3,7 +3,7 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: "./src/mjs/main.mjs",
     output: {
-        filename: "./bundle.js"
+        filename: "./application.js"
     },
     module: {
         rules: [

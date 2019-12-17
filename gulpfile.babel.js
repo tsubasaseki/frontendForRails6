@@ -29,8 +29,8 @@ const path = {
         src: `${srcDir}/scss/**/*.scss`,
         dest: `${rootDir}/assets/css`
     },
-    es6: {
-        src: `${srcDir}/es6/**/*.es6`,
+    js: {
+        src: `${srcDir}/js/**/*.js`,
         dest: `${rootDir}/assets/js`
     },
     mjs: {
@@ -66,10 +66,10 @@ const style = () => {
         .pipe(rename({extname:'.min.css'}))
         .pipe(gulp.dest(path.styles.dest))
 }
-const es6 = () => {
-    return gulp.src(path.es6.src)
+const js = () => {
+    return gulp.src(path.js.src)
         .pipe(babel())
-        .pipe(gulp.dest(path.es6.dest))
+        .pipe(gulp.dest(path.js.dest))
         // .webpackStream(webpackConfig, webpack)
         // .pipe(uglify())
         // .pipe(rename({extname:'.min.js'}))
@@ -102,12 +102,12 @@ const serve = (done) => {
 
 const watch = () => {
     gulp.watch(path.styles.src, style)
-    gulp.watch(path.es6.src, es6)
+    gulp.watch(path.js.src, js)
     gulp.watch(path.mjs.src, mjs)
     gulp.watch([
         path.html,
         path.styles.dest + '/*.css',
-        `${path.es6.dest}/*.js`,
+        `${path.js.dest}/*.js`,
         path.mjs.dest + '/*.js'
     ], reload)
 };
