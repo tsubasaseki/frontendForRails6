@@ -1,3 +1,3 @@
 "use strict";
 
-console.log('dashbaord index');
+console.log('hoge');

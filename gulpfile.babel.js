@@ -53,7 +53,10 @@ const style = () => {
 
     return gulp.src(path.styles.src)
         .pipe(sourcemaps.init())
-        .pipe(sass({outputStyle: 'expanded'})) // DON'T use sass option {outputStyle: 'compressed'} the reason is that the map is slip
+        .pipe(sass({
+            includePaths: './node_modules/bootstrap/scss',
+            outputStyle: 'expanded'
+        })) // DON'T use sass option {outputStyle: 'compressed'} the reason is that the map is slip
         .pipe(gulp.dest(path.styles.dest))
         .pipe(postcss(plugin))
         .pipe(rename({extname:'.pre.css'}))
@@ -70,16 +73,10 @@ const js = () => {
     return gulp.src(path.js.src)
         .pipe(babel())
         .pipe(gulp.dest(path.js.dest))
-        // .webpackStream(webpackConfig, webpack)
-        // .pipe(uglify())
-        // .pipe(rename({extname:'.min.js'}))
-        // .pipe(gulp.dest(path.mjs.dest))
 }
 
 const mjs = () => {
     return webpackStream(webpackConfig, webpack)
-        //gulp.src(path.mjs.src)
-        //.pipe(babel())
         .pipe(gulp.dest(path.mjs.dest))
         .pipe(uglify())
         .pipe(rename({extname:'.min.js'}))

@@ -1,3 +1,7 @@
+import webpack from 'webpack';
+console.log('hoge')
+console.log(webpack)
+
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
